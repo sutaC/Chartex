@@ -18,7 +18,7 @@ canvas.height = MAX_HEIGHT;
 
 const CENTER_X = Math.round(MAX_WIDTH / 2);
 const CENTER_Y = Math.round(MAX_HEIGHT / 2);
-const FONT_SIZE = 14;
+const FONT_SIZE = 10;
 
 ctx.font = `${FONT_SIZE}px sans-serif`;
 
@@ -59,8 +59,6 @@ function drawGraph(
     stepValue = 5,
     pointSize = 4
 ) {
-    ctx.strokeStyle = "#0000FF";
-    ctx.fillStyle = "#0000FF";
     const STEP = MAX_WIDTH / stepAmmount;
 
     let prevY, prevX;
@@ -71,18 +69,45 @@ function drawGraph(
         const trueY = func(trueX);
         const y = CENTER_Y - trueY;
 
-        // Line
+        // Drawing
+        ctx.fillStyle = "#0000FF";
+        ctx.strokeStyle = "#0000FF";
+        // - Line
         ctx.beginPath();
         ctx.moveTo(prevX, prevY);
         ctx.lineTo(x, y);
         ctx.stroke();
         ctx.closePath();
-        // Point
+        // - Point
         ctx.beginPath();
         ctx.arc(x, y, pointSize, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
-
+        // - Axis value
+        // - - X axis
+        if (trueX !== 0) {
+            ctx.strokeStyle = "#FFFFFF88";
+            ctx.fillStyle = "#C6C6C6";
+            ctx.beginPath();
+            ctx.moveTo(x, CENTER_Y - FONT_SIZE / 2);
+            ctx.lineTo(x, CENTER_Y + FONT_SIZE / 2);
+            ctx.stroke();
+            ctx.closePath();
+            const textX = String(Math.round(trueX * 100) / 100);
+            ctx.fillText(textX, x, CENTER_Y + FONT_SIZE * 1.5);
+        }
+        // - - Y axis
+        if (trueY !== 0) {
+            ctx.strokeStyle = "#FFFFFF88";
+            ctx.fillStyle = "#C6C6C6";
+            ctx.beginPath();
+            ctx.moveTo(CENTER_X - FONT_SIZE / 2, y);
+            ctx.lineTo(CENTER_X + FONT_SIZE / 2, y);
+            ctx.stroke();
+            ctx.closePath();
+            const textY = String(Math.round(trueY * 100) / 100);
+            ctx.fillText(textY, CENTER_X + FONT_SIZE * 1.5, y);
+        }
         // ===
         prevX = x;
         prevY = y;
