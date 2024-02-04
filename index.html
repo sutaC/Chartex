@@ -16,5 +16,45 @@
         <main>
             <canvas id="chart" width="500" height="500"></canvas>
         </main>
+
+        <aside>
+            <div class="field">
+                <input
+                    type="number"
+                    min="1"
+                    value="2"
+                    max="10"
+                    id="inpPointSize"
+                    data-original="2"
+                />
+                <label for="inpPointSize">Point size</label>
+            </div>
+
+            <div class="field">
+                <input
+                    type="number"
+                    min="1"
+                    value="10"
+                    max="500"
+                    id="inpStepAmmount"
+                    data-original="10"
+                />
+                <label for="inpStepAmmount">Ammount of points</label>
+            </div>
+
+            <div class="field">
+                <input
+                    type="number"
+                    min="0.01"
+                    value="1"
+                    max="100"
+                    id="inpStepValue"
+                    data-original="1"
+                />
+                <label for="inpStepValue">Distance between points</label>
+            </div>
+
+            <button id="btnReset">Reset values</button>
+        </aside>
     </body>
 </html>

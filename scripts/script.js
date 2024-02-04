@@ -3,6 +3,11 @@ if (!canvas.getContext) throw new Error("Cannot connect to canvas element");
 const ctx = canvas.getContext("2d");
 if (!ctx) throw new Error("Cannot connect to canvas context");
 
+const btnReset = document.querySelector("#btnReset");
+const inpPointSize = document.querySelector("#inpPointSize");
+const inpStepValue = document.querySelector("#inpStepValue");
+const inpStepAmmount = document.querySelector("#inpStepAmmount");
+
 // SETUP
 
 const MAX_WIDTH = 500;
@@ -86,7 +91,45 @@ function drawGraph(
 
 // MAIN
 
-drawChartOutlines();
-
 const graph = (x) => x;
-drawGraph(graph, 100, 5, 2);
+let stepAmmount = 10;
+let stepValue = 50;
+let pointSize = 2;
+
+inpPointSize.value = inpPointSize.dataset.original = pointSize;
+inpStepAmmount.value = inpStepAmmount.dataset.original = stepAmmount;
+inpStepValue.value = inpStepValue.dataset.original = stepValue;
+
+// DRAWING
+
+drawChartOutlines();
+drawGraph(graph, stepAmmount, stepValue, pointSize);
+
+// REACTIVE
+
+function refreschChart() {
+    clearChart();
+    drawChartOutlines();
+    drawGraph(graph, stepAmmount, stepValue, pointSize);
+}
+
+btnReset.onclick = (e) => {
+    pointSize = inpPointSize.value = inpPointSize.dataset.original ?? 1;
+    stepAmmount = inpStepAmmount.value = inpStepAmmount.dataset.original ?? 1;
+    stepValue = inpStepValue.value = inpStepValue.dataset.original ?? 1;
+
+    refreschChart();
+};
+
+inpPointSize.oninput = (e) => {
+    pointSize = Number(e.target.value);
+    refreschChart();
+};
+inpStepAmmount.oninput = (e) => {
+    stepAmmount = Number(e.target.value);
+    refreschChart();
+};
+inpStepValue.oninput = (e) => {
+    stepValue = Number(e.target.value);
+    refreschChart();
+};
