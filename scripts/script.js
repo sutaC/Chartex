@@ -7,6 +7,9 @@ const btnReset = document.querySelector("#btnReset");
 const inpPointSize = document.querySelector("#inpPointSize");
 const inpStepValue = document.querySelector("#inpStepValue");
 const inpStepAmmount = document.querySelector("#inpStepAmmount");
+const inpDrawAxes = document.querySelector("#inpDrawAxes");
+const inpDrawLines = document.querySelector("#inpDrawLines");
+const inpChartColor = document.querySelector("#inpChartColor");
 
 // SETUP
 
@@ -53,12 +56,7 @@ function clearChart() {
     ctx.clearRect(0, 0, MAX_WIDTH, MAX_HEIGHT);
 }
 
-function drawGraph(
-    func = (x) => x,
-    stepAmmount = 10,
-    stepValue = 5,
-    pointSize = 4
-) {
+function drawGraph(func = (x) => x) {
     const STEP = MAX_WIDTH / stepAmmount;
 
     let prevY, prevX;
@@ -70,22 +68,24 @@ function drawGraph(
         const y = CENTER_Y - trueY;
 
         // Drawing
-        ctx.fillStyle = "#0000FF";
-        ctx.strokeStyle = "#0000FF";
-        // - Line
-        ctx.beginPath();
-        ctx.moveTo(prevX, prevY);
-        ctx.lineTo(x, y);
-        ctx.stroke();
-        ctx.closePath();
+        ctx.fillStyle = chartColor;
+        ctx.strokeStyle = chartColor;
         // - Point
         ctx.beginPath();
         ctx.arc(x, y, pointSize, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
+        // - Line
+        if (drawLines) {
+            ctx.beginPath();
+            ctx.moveTo(prevX, prevY);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.closePath();
+        }
         // - Axis value
         // - - X axis
-        if (trueX !== 0) {
+        if (trueX !== 0 && drawAxes) {
             ctx.strokeStyle = "#FFFFFF88";
             ctx.fillStyle = "#C6C6C6";
             ctx.beginPath();
@@ -97,7 +97,7 @@ function drawGraph(
             ctx.fillText(textX, x, CENTER_Y + FONT_SIZE * 1.5);
         }
         // - - Y axis
-        if (trueY !== 0) {
+        if (trueY !== 0 && drawAxes) {
             ctx.strokeStyle = "#FFFFFF88";
             ctx.fillStyle = "#C6C6C6";
             ctx.beginPath();
@@ -121,27 +121,37 @@ let stepAmmount = 10;
 let stepValue = 50;
 let pointSize = 2;
 
+let drawAxes = true;
+let drawLines = true;
+let chartColor = "#0000FF";
+
 inpPointSize.value = inpPointSize.dataset.original = pointSize;
 inpStepAmmount.value = inpStepAmmount.dataset.original = stepAmmount;
 inpStepValue.value = inpStepValue.dataset.original = stepValue;
+inpChartColor.value = inpChartColor.dataset.original = chartColor;
+inpDrawAxes.checked = inpDrawAxes.dataset.original = drawAxes;
+inpDrawLines.checked = inpDrawLines.dataset.original = drawLines;
 
 // DRAWING
 
 drawChartOutlines();
-drawGraph(graph, stepAmmount, stepValue, pointSize);
+drawGraph(graph);
 
 // REACTIVE
 
 function refreschChart() {
     clearChart();
     drawChartOutlines();
-    drawGraph(graph, stepAmmount, stepValue, pointSize);
+    drawGraph(graph);
 }
 
 btnReset.onclick = (e) => {
-    pointSize = inpPointSize.value = inpPointSize.dataset.original ?? 1;
-    stepAmmount = inpStepAmmount.value = inpStepAmmount.dataset.original ?? 1;
-    stepValue = inpStepValue.value = inpStepValue.dataset.original ?? 1;
+    pointSize = inpPointSize.value = inpPointSize.dataset.original;
+    stepAmmount = inpStepAmmount.value = inpStepAmmount.dataset.original;
+    stepValue = inpStepValue.value = inpStepValue.dataset.original;
+    drawAxes = inpDrawAxes.checked = inpDrawAxes.dataset.original;
+    drawLines = inpDrawLines.checked = inpDrawLines.dataset.original;
+    chartColor = inpChartColor.value = inpChartColor.dataset.original;
 
     refreschChart();
 };
@@ -156,5 +166,18 @@ inpStepAmmount.oninput = (e) => {
 };
 inpStepValue.oninput = (e) => {
     stepValue = Number(e.target.value);
+    refreschChart();
+};
+
+inpDrawAxes.onclick = (e) => {
+    drawAxes = Boolean(e.target.checked);
+    refreschChart();
+};
+inpDrawLines.onclick = (e) => {
+    drawLines = Boolean(e.target.checked);
+    refreschChart();
+};
+inpChartColor.oninput = (e) => {
+    chartColor = e.target.value;
     refreschChart();
 };
