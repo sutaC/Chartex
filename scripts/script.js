@@ -7,6 +7,7 @@ const btnReset = document.querySelector("#btnReset");
 const inpPointSize = document.querySelector("#inpPointSize");
 const inpStepValue = document.querySelector("#inpStepValue");
 const inpStepAmmount = document.querySelector("#inpStepAmmount");
+const inpYZoom = document.querySelector("#inpYZoom");
 const inpDrawAxes = document.querySelector("#inpDrawAxes");
 const inpDrawLines = document.querySelector("#inpDrawLines");
 const inpChartColor = document.querySelector("#inpChartColor");
@@ -56,7 +57,7 @@ function clearChart() {
     ctx.clearRect(0, 0, MAX_WIDTH, MAX_HEIGHT);
 }
 
-function drawGraph(func = (x) => x) {
+function drawGraph(graphFunction = (x) => x) {
     const STEP = MAX_WIDTH / stepAmmount;
 
     let prevY, prevX;
@@ -64,8 +65,8 @@ function drawGraph(func = (x) => x) {
     for (let i = 0; i <= stepAmmount; i++) {
         const x = i * STEP;
         const trueX = (i - stepAmmount / 2) * stepValue;
-        const trueY = func(trueX);
-        const y = CENTER_Y - trueY;
+        const trueY = graphFunction(trueX);
+        const y = CENTER_Y - trueY * yZoom;
 
         // Drawing
         ctx.fillStyle = chartColor;
@@ -120,6 +121,7 @@ const graph = (x) => x;
 let stepAmmount = 10;
 let stepValue = 50;
 let pointSize = 2;
+let yZoom = 1;
 
 let drawAxes = true;
 let drawLines = true;
@@ -128,6 +130,7 @@ let chartColor = "#0000FF";
 inpPointSize.value = inpPointSize.dataset.original = pointSize;
 inpStepAmmount.value = inpStepAmmount.dataset.original = stepAmmount;
 inpStepValue.value = inpStepValue.dataset.original = stepValue;
+inpYZoom.value = inpYZoom.dataset.original = yZoom;
 inpChartColor.value = inpChartColor.dataset.original = chartColor;
 inpDrawAxes.checked = inpDrawAxes.dataset.original = drawAxes;
 inpDrawLines.checked = inpDrawLines.dataset.original = drawLines;
@@ -149,6 +152,7 @@ btnReset.onclick = (e) => {
     pointSize = inpPointSize.value = inpPointSize.dataset.original;
     stepAmmount = inpStepAmmount.value = inpStepAmmount.dataset.original;
     stepValue = inpStepValue.value = inpStepValue.dataset.original;
+    yZoom = inpYZoom.value = inpYZoom.dataset.original;
     drawAxes = inpDrawAxes.checked = inpDrawAxes.dataset.original;
     drawLines = inpDrawLines.checked = inpDrawLines.dataset.original;
     chartColor = inpChartColor.value = inpChartColor.dataset.original;
@@ -166,6 +170,10 @@ inpStepAmmount.oninput = (e) => {
 };
 inpStepValue.oninput = (e) => {
     stepValue = Number(e.target.value);
+    refreschChart();
+};
+inpYZoom.oninput = (e) => {
+    yZoom = Number(e.target.value);
     refreschChart();
 };
 

@@ -24,6 +24,7 @@
                     min="1"
                     value="2"
                     max="10"
+                    step="1"
                     id="inpPointSize"
                     data-original="2"
                 />
@@ -36,6 +37,7 @@
                     min="1"
                     value="10"
                     max="500"
+                    step="1"
                     id="inpStepAmmount"
                     data-original="10"
                 />
@@ -48,11 +50,26 @@
                     min="0.01"
                     value="1"
                     max="100"
+                    step="1"
                     id="inpStepValue"
                     data-original="1"
                 />
                 <label for="inpStepValue">Distance between points</label>
             </div>
+
+            <div class="field">
+                <input
+                    type="number"
+                    min="0.01"
+                    value="1"
+                    max="500"
+                    step="1"
+                    id="inpYZoom"
+                    data-original="1"
+                />
+                <label for="inpStepValue">Zoom on y axis</label>
+            </div>
+
             <div class="field">
                 <input type="checkbox" id="inpDrawAxes" checked />
                 <label for="inpDrawAxes">Draw axes values</label>
