@@ -26,6 +26,16 @@ h2 {
     text-align: center;
 }
 
+code {
+    background: dimgray;
+    color: white;
+    padding: 0.1rem;
+}
+
+code > i {
+    color: tomato;
+}
+
 main {
     display: flex;
     justify-content: space-between;
@@ -36,7 +46,7 @@ main {
 }
 
 section {
-    max-width: 30%;
+    width: clamp(20%, 20rem, 30%);
     padding: 1rem;
     background-color: lightslategray;
     border-radius: inherit;
@@ -78,4 +88,26 @@ canvas {
 
 .hidden {
     display: none;
+}
+
+.detailsList {
+    max-height: 22rem;
+    overflow: auto;
+}
+
+details > summary {
+    user-select: none;
+    cursor: pointer;
+}
+
+li {
+    user-select: none;
+}
+
+code {
+    user-select: text;
+}
+
+.field > label {
+    user-select: none;
 }

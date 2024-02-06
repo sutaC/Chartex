@@ -32,22 +32,9 @@ ctx.font = `${FONT_SIZE}px sans-serif`;
 
 function calculateGraph(input, x) {
     "use strict";
-    const {
-        PI,
-        sin,
-        cos,
-        tan,
-        pow,
-        abs,
-        floor,
-        round,
-        random,
-        log,
-        log10,
-        log2,
-        sqrt,
-        ceil,
-    } = Math;
+    const { PI, sin, cos, tan, pow, abs, random, sqrt, round, ceil, floor } =
+        Math;
+    const log = (base, num) => Math.log(num) / Math.log(base);
 
     const result = eval(`"use strict"; (((x) => ${input})(${x}))`);
     return Number(result);
@@ -161,7 +148,7 @@ let graph = "x";
 let stepAmmount = 10;
 let stepValue = 1;
 let pointSize = 2;
-let yZoom = 1;
+let yZoom = 40;
 
 let drawAxes = true;
 let drawLines = true;
