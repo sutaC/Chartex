@@ -12,6 +12,7 @@ const inpYZoom = document.querySelector("#inpYZoom");
 const inpDrawAxes = document.querySelector("#inpDrawAxes");
 const inpDrawLines = document.querySelector("#inpDrawLines");
 const inpChartColor = document.querySelector("#inpChartColor");
+const errorMsg = document.querySelector("#errorMsg");
 
 // SETUP
 
@@ -48,13 +49,8 @@ function calculateGraph(input, x) {
         ceil,
     } = Math;
 
-    try {
-        const result = eval(`"use strict"; (((x) => ${input})(${x}))`);
-        return Number(result);
-    } catch (error) {
-        // console.error("Error occured while calculating graph values:", error);
-        return 0;
-    }
+    const result = eval(`"use strict"; (((x) => ${input})(${x}))`);
+    return Number(result);
 }
 
 function drawChartOutlines() {
@@ -87,6 +83,8 @@ function clearChart() {
 }
 
 function drawGraph(input = "x") {
+    errorMsg.classList.add("hidden");
+
     const STEP = MAX_WIDTH / stepAmmount;
 
     let prevY, prevX;
@@ -94,7 +92,19 @@ function drawGraph(input = "x") {
     for (let i = 0; i <= stepAmmount; i++) {
         const x = i * STEP;
         const trueX = (i - stepAmmount / 2) * stepValue;
-        const trueY = calculateGraph(input, trueX);
+
+        // Calculating y;
+        let calc = 0;
+        try {
+            calc = calculateGraph(input, trueX);
+        } catch (error) {
+            errorMsg.classList.remove("hidden");
+            return;
+        }
+        const trueY = calc;
+        calc = undefined;
+        // ---
+
         const y = CENTER_Y - trueY * yZoom;
 
         // Drawing
@@ -149,7 +159,7 @@ function drawGraph(input = "x") {
 let graph = "x";
 
 let stepAmmount = 10;
-let stepValue = 50;
+let stepValue = 1;
 let pointSize = 2;
 let yZoom = 1;
 

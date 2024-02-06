@@ -47,6 +47,7 @@ section {
 }
 
 .chart {
+    position: relative;
     padding: 0.25rem;
     border: 1px solid blue;
     border-radius: inherit;
@@ -59,4 +60,22 @@ canvas {
     aspect-ratio: 1;
     background-color: black;
     border-radius: 0.2rem;
+}
+
+#errorMsg {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    translate: 0 100%;
+
+    width: 100%;
+
+    text-align: center;
+    color: crimson;
+    font-size: small;
+    font-style: italic;
+}
+
+.hidden {
+    display: none;
 }
