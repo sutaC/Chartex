@@ -14,76 +14,94 @@
         </header>
 
         <main>
-            <canvas id="chart" width="500" height="500"></canvas>
+            <section aria-labelledby="hModifires">
+                <h2 id="hModifires">Modifires</h2>
+
+                <div class="fied">
+                    <input type="text" id="inpGraph" />
+                    <label for="inpGraph">Graph</label>
+                </div>
+
+                <div class="field">
+                    <input
+                        type="number"
+                        min="1"
+                        value="2"
+                        max="10"
+                        step="1"
+                        id="inpPointSize"
+                        data-original="2"
+                    />
+                    <label for="inpPointSize">Point size</label>
+                </div>
+
+                <div class="field">
+                    <input
+                        type="number"
+                        min="1"
+                        value="10"
+                        max="500"
+                        step="1"
+                        id="inpStepAmmount"
+                        data-original="10"
+                    />
+                    <label for="inpStepAmmount">Ammount of points</label>
+                </div>
+
+                <div class="field">
+                    <input
+                        type="number"
+                        min="0.1"
+                        value="1"
+                        max="100"
+                        step="1"
+                        id="inpStepValue"
+                        data-original="1"
+                    />
+                    <label for="inpStepValue">Distance between points</label>
+                </div>
+
+                <div class="field">
+                    <input
+                        type="number"
+                        min="0.1"
+                        value="1"
+                        max="500"
+                        step="1"
+                        id="inpYZoom"
+                        data-original="1"
+                    />
+                    <label for="inpStepValue">Zoom on y axis</label>
+                </div>
+
+                <div class="field">
+                    <input type="checkbox" id="inpDrawAxes" checked />
+                    <label for="inpDrawAxes">Draw axes values</label>
+                </div>
+                <div class="field">
+                    <input type="checkbox" id="inpDrawLines" checked />
+                    <label for="inpDrawLines">Draw lines between points</label>
+                </div>
+                <div class="field">
+                    <input type="color" id="inpChartColor" value="#0000FF" />
+                    <label for="inpChartColor">Color of diagram</label>
+                </div>
+
+                <button id="btnReset">Reset values</button>
+            </section>
+
+            <div class="chart">
+                <canvas id="chart" width="500" height="500"></canvas>
+            </div>
+
+            <section aria-labelledby="hHelp">
+                <h2 id="hHelp">Help</h2>
+                <p>Lorem ipsum dolor sit amet.</p>
+                <p>Sapiente vel numquam quod beatae.</p>
+                <p>Veniam illum quos blanditiis error.</p>
+                <p>Odit, magnam nostrum. Veniam, hic.</p>
+                <p>Repellat sit iste voluptate perferendis.</p>
+            </section>
         </main>
-
-        <aside>
-            <div class="field">
-                <input
-                    type="number"
-                    min="1"
-                    value="2"
-                    max="10"
-                    step="1"
-                    id="inpPointSize"
-                    data-original="2"
-                />
-                <label for="inpPointSize">Point size</label>
-            </div>
-
-            <div class="field">
-                <input
-                    type="number"
-                    min="1"
-                    value="10"
-                    max="500"
-                    step="1"
-                    id="inpStepAmmount"
-                    data-original="10"
-                />
-                <label for="inpStepAmmount">Ammount of points</label>
-            </div>
-
-            <div class="field">
-                <input
-                    type="number"
-                    min="0.01"
-                    value="1"
-                    max="100"
-                    step="1"
-                    id="inpStepValue"
-                    data-original="1"
-                />
-                <label for="inpStepValue">Distance between points</label>
-            </div>
-
-            <div class="field">
-                <input
-                    type="number"
-                    min="0.01"
-                    value="1"
-                    max="500"
-                    step="1"
-                    id="inpYZoom"
-                    data-original="1"
-                />
-                <label for="inpStepValue">Zoom on y axis</label>
-            </div>
-
-            <div class="field">
-                <input type="checkbox" id="inpDrawAxes" checked />
-                <label for="inpDrawAxes">Draw axes values</label>
-            </div>
-            <div class="field">
-                <input type="checkbox" id="inpDrawLines" checked />
-                <label for="inpDrawLines">Draw lines between points</label>
-            </div>
-            <div class="field">
-                <input type="color" id="inpChartColor" value="#0000FF" />
-                <label for="inpChartColor">Color of diagram</label>
-            </div>
-
-            <button id="btnReset">Reset values</button>
-        </aside>
     </body>
 </html>

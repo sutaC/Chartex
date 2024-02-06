@@ -22,8 +22,41 @@ h1 {
     margin: 0;
 }
 
+h2 {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 0 1rem;
+    border-radius: 0.5rem;
+}
+
+section {
+    max-width: 30%;
+    padding: 1rem;
+    background-color: lightslategray;
+    border-radius: inherit;
+}
+
+.field {
+    margin: 0.5rem 0;
+}
+
+.chart {
+    padding: 0.25rem;
+    border: 1px solid blue;
+    border-radius: inherit;
+    display: grid;
+    place-content: center;
+}
+
 canvas {
     width: clamp(20rem, 40vw, 30rem);
     aspect-ratio: 1;
     background-color: black;
+    border-radius: 0.2rem;
 }

@@ -4,6 +4,7 @@ const ctx = canvas.getContext("2d");
 if (!ctx) throw new Error("Cannot connect to canvas context");
 
 const btnReset = document.querySelector("#btnReset");
+const inpGraph = document.querySelector("#inpGraph");
 const inpPointSize = document.querySelector("#inpPointSize");
 const inpStepValue = document.querySelector("#inpStepValue");
 const inpStepAmmount = document.querySelector("#inpStepAmmount");
@@ -27,6 +28,34 @@ const FONT_SIZE = 10;
 ctx.font = `${FONT_SIZE}px sans-serif`;
 
 // FUNCTIONS
+
+function calculateGraph(input, x) {
+    "use strict";
+    const {
+        PI,
+        sin,
+        cos,
+        tan,
+        pow,
+        abs,
+        floor,
+        round,
+        random,
+        log,
+        log10,
+        log2,
+        sqrt,
+        ceil,
+    } = Math;
+
+    try {
+        const result = eval(`"use strict"; (((x) => ${input})(${x}))`);
+        return Number(result);
+    } catch (error) {
+        // console.error("Error occured while calculating graph values:", error);
+        return 0;
+    }
+}
 
 function drawChartOutlines() {
     // Axis
@@ -57,7 +86,7 @@ function clearChart() {
     ctx.clearRect(0, 0, MAX_WIDTH, MAX_HEIGHT);
 }
 
-function drawGraph(graphFunction = (x) => x) {
+function drawGraph(input = "x") {
     const STEP = MAX_WIDTH / stepAmmount;
 
     let prevY, prevX;
@@ -65,7 +94,7 @@ function drawGraph(graphFunction = (x) => x) {
     for (let i = 0; i <= stepAmmount; i++) {
         const x = i * STEP;
         const trueX = (i - stepAmmount / 2) * stepValue;
-        const trueY = graphFunction(trueX);
+        const trueY = calculateGraph(input, trueX);
         const y = CENTER_Y - trueY * yZoom;
 
         // Drawing
@@ -117,7 +146,8 @@ function drawGraph(graphFunction = (x) => x) {
 
 // MAIN
 
-const graph = (x) => x;
+let graph = "x";
+
 let stepAmmount = 10;
 let stepValue = 50;
 let pointSize = 2;
@@ -127,6 +157,7 @@ let drawAxes = true;
 let drawLines = true;
 let chartColor = "#0000FF";
 
+inpGraph.value = graph;
 inpPointSize.value = inpPointSize.dataset.original = pointSize;
 inpStepAmmount.value = inpStepAmmount.dataset.original = stepAmmount;
 inpStepValue.value = inpStepValue.dataset.original = stepValue;
@@ -157,6 +188,11 @@ btnReset.onclick = (e) => {
     drawLines = inpDrawLines.checked = inpDrawLines.dataset.original;
     chartColor = inpChartColor.value = inpChartColor.dataset.original;
 
+    refreschChart();
+};
+
+inpGraph.oninput = (e) => {
+    graph = e.target.value;
     refreschChart();
 };
 
