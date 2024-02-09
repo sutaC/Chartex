@@ -1,0 +1,11 @@
+{
+    "source": {
+        "include": ["./scripts"],
+        "exclude": ["./node_modules", "./docs"]
+    },
+    "opts": {
+        "recurse": true,
+        "destination": "./docs",
+        "readme": "./README.md"
+    }
+}
