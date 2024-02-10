@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// @ts-check
+import Chart, { DefaultDrawChartOptions, DrawChartOptions } from "./chart.js";
+
+/**
+ * Global canvas element for displaying chart
+ * @type {?HTMLCanvasElement}
+ */
+const canvas = document.querySelector("#chart");
+if (!canvas?.getContext) throw ReferenceError("HTML element is missing");
+
+/**
+ * Global chart object for frawing on canvas
+ */
+const chart = new Chart(canvas);
+
+/** @type {HTMLButtonElement?} */
+const btnReset = document.querySelector("#btnReset");
+if (!btnReset) throw ReferenceError("HTML element is missing");
+/** @type {HTMLInputElement?} */
+const inpGraph = document.querySelector("#inpGraph");
+if (!inpGraph) throw ReferenceError("HTML element is missing");
+/** @type {HTMLInputElement?} */
+const inpPointSize = document.querySelector("#inpPointSize");
+if (!inpPointSize) throw ReferenceError("HTML element is missing");
+/** @type {HTMLInputElement?} */
+const inpStepValue = document.querySelector("#inpStepValue");
+if (!inpStepValue) throw ReferenceError("HTML element is missing");
+/** @type {HTMLInputElement?} */
+const inpStepAmmount = document.querySelector("#inpStepAmmount");
+if (!inpStepAmmount) throw ReferenceError("HTML element is missing");
+/** @type {HTMLInputElement?} */
+const inpYZoom = document.querySelector("#inpYZoom");
+if (!inpYZoom) throw ReferenceError("HTML element is missing");
+/** @type {HTMLInputElement?} */
+const inpDrawAxes = document.querySelector("#inpDrawAxes");
+if (!inpDrawAxes) throw ReferenceError("HTML element is missing");
+/** @type {HTMLInputElement?} */
+const inpDrawLines = document.querySelector("#inpDrawLines");
+if (!inpDrawLines) throw ReferenceError("HTML element is missing");
+/** @type {HTMLInputElement?} */
+const inpChartColor = document.querySelector("#inpChartColor");
+if (!inpChartColor) throw ReferenceError("HTML element is missing");
+/** @type {HTMLElement?} */
+const errorMsg = document.querySelector("#errorMsg");
+if (!errorMsg) throw ReferenceError("HTML element is missing");
+
+// Setting up default values
+inpGraph.value = DefaultDrawChartOptions.formula;
+inpPointSize.value = DefaultDrawChartOptions.pointSize.toString();
+inpStepAmmount.value = DefaultDrawChartOptions.stepAmmount.toString();
+inpStepValue.value = DefaultDrawChartOptions.stepValue.toString();
+inpYZoom.value = DefaultDrawChartOptions.yZoom.toString();
+inpDrawAxes.checked = DefaultDrawChartOptions.drawAxes;
+inpDrawLines.checked = DefaultDrawChartOptions.drawLines;
+inpChartColor.value = DefaultDrawChartOptions.chartColor;
+
+/**
+ * Extracts draw chart options object
+ * @returns {DrawChartOptions}
+ */
+function getGraphOptions() {
+    return {
+        formula: inpGraph?.value ?? DefaultDrawChartOptions.formula,
+        stepAmmount:
+            Number(inpStepAmmount?.value) ??
+            DefaultDrawChartOptions.stepAmmount,
+        stepValue:
+            Number(inpStepValue?.value) ?? DefaultDrawChartOptions.stepValue,
+        pointSize:
+            Number(inpPointSize?.value) ?? DefaultDrawChartOptions.pointSize,
+        yZoom: Number(inpYZoom?.value) ?? DefaultDrawChartOptions.yZoom,
+        drawAxes: inpDrawAxes?.checked ?? DefaultDrawChartOptions.drawAxes,
+        drawLines: inpDrawLines?.checked ?? DefaultDrawChartOptions.drawLines,
+        chartColor: inpChartColor?.value ?? DefaultDrawChartOptions.chartColor,
+    };
+}
+
+/**
+ * Calls {@link Chart.drawChart} on main {@link chart} object
+ * @returns {void}
+ */
+function drawChartWithValues() {
+    if (!errorMsg) throw ReferenceError("HTML element is missing");
+
+    errorMsg.classList.add("hidden");
+    try {
+        chart.drawChart(getGraphOptions());
+    } catch (error) {
+        errorMsg.classList.remove("hidden");
+    }
+}
+
+btnReset.onclick = () => {
+    inpPointSize.value = DefaultDrawChartOptions.pointSize.toString();
+    inpStepAmmount.value = DefaultDrawChartOptions.stepAmmount.toString();
+    inpStepValue.value = DefaultDrawChartOptions.stepValue.toString();
+    inpYZoom.value = DefaultDrawChartOptions.yZoom.toString();
+    inpDrawAxes.checked = DefaultDrawChartOptions.drawAxes;
+    inpDrawLines.checked = DefaultDrawChartOptions.drawLines;
+    inpChartColor.value = DefaultDrawChartOptions.chartColor;
+
+    drawChartWithValues();
+};
+
+inpGraph.oninput = drawChartWithValues;
+inpPointSize.oninput = drawChartWithValues;
+inpStepAmmount.oninput = drawChartWithValues;
+inpStepValue.oninput = drawChartWithValues;
+inpYZoom.oninput = drawChartWithValues;
+inpDrawAxes.onclick = drawChartWithValues;
+inpDrawLines.onclick = drawChartWithValues;
+inpChartColor.oninput = drawChartWithValues;
+
+drawChartWithValues();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-chart.html">chart</a></li></ul><h3>Classes</h3><ul><li><a href="module-chart.html">chart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#btnReset">btnReset</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#chart">chart</a></li><li><a href="global.html#drawChartWithValues">drawChartWithValues</a></li><li><a href="global.html#errorMsg">errorMsg</a></li><li><a href="global.html#getGraphOptions">getGraphOptions</a></li><li><a href="global.html#inpChartColor">inpChartColor</a></li><li><a href="global.html#inpDrawAxes">inpDrawAxes</a></li><li><a href="global.html#inpDrawLines">inpDrawLines</a></li><li><a href="global.html#inpGraph">inpGraph</a></li><li><a href="global.html#inpPointSize">inpPointSize</a></li><li><a href="global.html#inpStepAmmount">inpStepAmmount</a></li><li><a href="global.html#inpStepValue">inpStepValue</a></li><li><a href="global.html#inpYZoom">inpYZoom</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Feb 10 2024 01:57:26 GMT+0100 (czas środkowoeuropejski standardowy)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

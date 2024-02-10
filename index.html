@@ -6,7 +6,7 @@
         <title>Chartex</title>
 
         <link rel="stylesheet" href="./styles/style.css" />
-        <script src="./scripts/script.js" defer></script>
+        <script src="./scripts/main.js" type="module" defer></script>
     </head>
     <body>
         <header>
@@ -19,7 +19,7 @@
 
                 <div class="fied">
                     <label for="inpGraph">f(x) = </label>
-                    <input type="text" id="inpGraph" />
+                    <input type="text" id="inpGraph" value="x" />
                 </div>
 
                 <div class="field">
@@ -30,7 +30,6 @@
                         max="10"
                         step="1"
                         id="inpPointSize"
-                        data-original="2"
                     />
                     <label for="inpPointSize">Point size</label>
                 </div>
@@ -43,7 +42,6 @@
                         max="500"
                         step="1"
                         id="inpStepAmmount"
-                        data-original="10"
                     />
                     <label for="inpStepAmmount">Ammount of points</label>
                 </div>
@@ -56,7 +54,6 @@
                         max="100"
                         step="1"
                         id="inpStepValue"
-                        data-original="1"
                     />
                     <label for="inpStepValue">Distance between points</label>
                 </div>
@@ -69,7 +66,6 @@
                         max="500"
                         step="1"
                         id="inpYZoom"
-                        data-original="1"
                     />
                     <label for="inpStepValue">Zoom on y axis</label>
                 </div>
