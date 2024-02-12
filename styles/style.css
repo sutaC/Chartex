@@ -106,7 +106,8 @@ section {
     isolation: isolate;
     left: 0;
     bottom: 0;
-    max-height: 30vh;
+    max-height: 25vh;
+    max-height: 25svh;
     overflow: auto;
     background-color: color-mix(
         in srgb,
