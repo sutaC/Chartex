@@ -89,6 +89,16 @@ canvas {
 
 a {
     color: var(--text);
+    transition: opacity 200ms;
+}
+
+a:hover,
+a:focus {
+    opacity: 0.75;
+}
+
+a:active {
+    opacity: 0.5;
 }
 
 section {
@@ -145,6 +155,10 @@ section > h2 {
 .field > input:focus,
 .field > input:active {
     outline: 1px solid var(--accent);
+}
+
+.field > input[type="color"] {
+    cursor: pointer;
 }
 
 .field > input[type="checkbox"] {
@@ -237,6 +251,7 @@ details ul {
 
 details li {
     margin-bottom: 0.25rem;
+    user-select: none;
 }
 
 details li::marker {
@@ -248,6 +263,7 @@ details code {
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 15%);
+    user-select: text;
 }
 
 details code > i {
@@ -256,6 +272,24 @@ details code > i {
 
 summary {
     font-size: 1.125rem;
+    cursor: pointer;
+}
+
+/* Animations */
+
+@keyframes slideInTop {
+    0% {
+        translate: 0 -100%;
+    }
+    50% {
+        translate: 0;
+    }
+    75% {
+        translate: 0 -5%;
+    }
+    100% {
+        translate: 0;
+    }
 }
 
 @keyframes slideInBottom {
@@ -272,9 +306,69 @@ summary {
         translate: 0;
     }
 }
+
+@keyframes slideInLeft {
+    0% {
+        translate: -100% 0;
+    }
+    50% {
+        translate: 0;
+    }
+    75% {
+        translate: -5% 0;
+    }
+    100% {
+        translate: 0;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        translate: 100% 0;
+    }
+    50% {
+        translate: 0;
+    }
+    75% {
+        translate: 5% 0;
+    }
+    100% {
+        translate: 0;
+    }
+}
+
+@keyframes appearIn {
+    0% {
+        scale: 0.75;
+        opacity: 0;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
 section {
     animation: slideInBottom 400ms ease-in;
     z-index: 1;
+}
+
+canvas {
+    animation: appearIn 300ms ease-in;
+}
+
+.formula {
+    animation: slideInBottom 400ms ease-in;
+}
+
+header {
+    animation: slideInTop 400ms ease-in;
+}
+
+#errorMsg:not(.hidden) {
+    animation: appearIn 200ms ease-in;
 }
 
 /* Responsive */
@@ -302,7 +396,28 @@ section.hidden {
         display: block;
     }
 
+    main {
+        display: flex;
+        gap: 2rem;
+    }
+
     section {
+        position: relative;
         animation: none;
+        max-height: 100%;
+    }
+
+    #sectionModifires {
+        border-radius: 0 2rem 2rem 0;
+        animation: slideInLeft 400ms ease-in;
+    }
+
+    #sectionHelp {
+        border-radius: 2rem 0 0 2rem;
+        animation: slideInRight 400ms ease-in;
+    }
+
+    footer {
+        animation: slideInBottom 400ms ease-in;
     }
 }
