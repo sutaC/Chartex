@@ -1,68 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Noto%20Sans%20Modi:700|Noto%20Sans%20Modi:400");
+
+/* Setup */
 * {
     box-sizing: border-box;
 }
 
-html {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+:root {
+    --text: #240905;
+    --background: #fdf3f1;
+    --primary: #e04229;
+    --secondary: #d1ee89;
+    --accent: #84e54f;
 }
 
-body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 2rem;
+html {
+    font-family: "Noto Sans Modi", sans-serif;
+    font-weight: 400;
+    font-size: 100%;
+    text-align: center;
+    color: var(--text);
+    overflow: hidden;
+}
 
-    padding: 1rem;
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Noto Sans Modi";
+    font-weight: 700;
     margin: 0;
-
-    min-height: 100vh;
 }
 
 h1 {
-    margin: 0;
+    font-size: 1.802rem; /* 28.8px */
 }
 
 h2 {
-    text-align: center;
+    font-size: 1.602rem; /* 25.6px */
 }
 
-code {
-    background: dimgray;
-    color: white;
-    padding: 0.1rem;
+h3 {
+    font-size: 1.424rem; /* 22.72px */
 }
 
-code > i {
-    color: tomato;
+h4 {
+    font-size: 1.266rem; /* 20.32px */
+}
+
+h5 {
+    font-size: 1.125rem; /* 18.08px */
+}
+
+small {
+    font-size: 0.889rem; /* 14.24px */
+}
+
+p {
+    margin: 0;
+}
+
+/* Main */
+
+body {
+    min-height: 100vh;
+    background-color: var(--background);
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+    overflow: hidden;
 }
 
 main {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    width: 100%;
-    padding: 0 1rem;
-    border-radius: 0.5rem;
-}
-
-section {
-    width: clamp(20%, 20rem, 30%);
-    padding: 1rem;
-    background-color: lightslategray;
-    border-radius: inherit;
-}
-
-.field {
-    margin: 0.5rem 0;
-}
-
-.chart {
-    position: relative;
-    padding: 0.25rem;
-    border: 1px solid blue;
-    border-radius: inherit;
-    display: grid;
-    place-content: center;
+    padding-top: 1rem;
 }
 
 canvas {
@@ -73,53 +83,191 @@ canvas {
 }
 
 #errorMsg {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    translate: 0 100%;
-
-    width: 100%;
-
-    text-align: center;
-    color: crimson;
-    font-size: small;
+    color: var(--primary);
     font-style: italic;
 }
 
-.hidden {
-    display: none;
-}
-
-.detailsList {
-    max-height: 22rem;
+section {
+    position: absolute;
+    isolation: isolate;
+    left: 0;
+    bottom: 0;
+    max-height: 30vh;
     overflow: auto;
+    background-color: color-mix(
+        in srgb,
+        var(--secondary) 100%,
+        var(--background) 75%
+    );
+    border-radius: 2rem 2rem 0 0;
+    padding: 1rem 2rem 3rem;
+    text-align: left;
+    width: 100%;
 }
 
-details > summary {
-    user-select: none;
+section > h2 {
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.field > input {
+    flex: 2;
+    margin: 0;
+    margin-bottom: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--secondary);
+
+    --_input-shadow: color-mix(in srgb, var(--accent) 100%, transparent 100%);
+    box-shadow: inset 4px 4px 4px var(--_input-shadow),
+        inset -4px -4px 4px var(--_input-shadow), 0 4px 4px rgba(0, 0, 0, 15%);
+}
+
+.field > input:hover {
+    opacity: 0.8;
+}
+
+.field > input:focus,
+.field > input:active {
+    outline: 1px solid var(--accent);
+}
+
+.field > input[type="checkbox"] {
+    flex: 0;
+    position: relative;
     cursor: pointer;
 }
 
-li {
-    user-select: none;
+.field > input[type="checkbox"]::before {
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    text-align: center;
+    font-size: 0.75rem;
+    padding: 0.15rem;
+    width: 100%;
+    aspect-ratio: 1;
+    content: " ";
+    background-color: var(--secondary);
+    border-radius: 0.2rem;
+    box-shadow: inset 4px 4px 4px var(--_input-shadow),
+        inset -4px -4px 4px var(--_input-shadow), 0 4px 4px rgba(0, 0, 0, 15%);
 }
 
-code {
-    user-select: text;
+.field > input[type="checkbox"]:checked:before {
+    content: "x";
 }
 
-.field > label {
-    user-select: none;
+.formula {
+    padding-top: 0.25rem;
+    margin: 0 auto;
+    max-width: 75%;
 }
 
-@media (width <= 800px) {
-    main {
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
+.formula input {
+    margin: 0;
+}
+
+button {
+    width: 100%;
+    background-color: color-mix(
+        in srgb,
+        var(--primary) 100%,
+        var(--background) 100%
+    );
+    padding: 0.2rem 0.4rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+
+    --_button-shadow: color-mix(in srgb, var(--primary) 100%, transparent 100%);
+    box-shadow: inset 4px 4px 4px var(--_button-shadow),
+        inset -4px -4px 4px var(--_button-shadow), 0 4px 4px rgba(0, 0, 0, 15%);
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    opacity: 0.5;
+    border: 1px solid var(--primary);
+}
+
+button.sectionChange {
+    position: absolute;
+    right: 1.5rem;
+    top: 0.5rem;
+    aspect-ratio: 1;
+    width: 2.5rem;
+}
+
+i.icon {
+    display: block;
+    aspect-ratio: 1;
+    width: 100%;
+    background-image: var(--_src);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+details ul {
+    margin: 1rem 0;
+}
+
+details li {
+    margin-bottom: 0.25rem;
+}
+
+details li::marker {
+    content: " ";
+}
+
+details code {
+    background-color: color-mix(in srgb, var(--text) 30%, transparent 100%);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 15%);
+}
+
+details code > i {
+    color: var(--primary);
+}
+
+summary {
+    font-size: 1.125rem;
+}
+
+/* Responsive */
+
+.hidden {
+    visibility: hidden;
+}
+
+.mobile {
+    display: block;
+}
+.desktop {
+    display: none;
+}
+
+@media (width >= 800px) {
+    .mobile {
+        display: none;
     }
-
-    main > * {
-        width: 100%;
+    .desktop {
+        display: block;
     }
 }
