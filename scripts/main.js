@@ -43,6 +43,8 @@ if (!inpChartColor) throw ReferenceError("HTML element is missing");
 /** @type {HTMLElement?} */
 const errorMsg = document.querySelector("#errorMsg");
 if (!errorMsg) throw ReferenceError("HTML element is missing");
+/** @type {NodeListOf<HTMLButtonElement>} */
+const sectionChangeBtns = document.querySelectorAll(".sectionChange");
 
 // Setting up default values
 inpGraph.value = DefaultDrawChartOptions.formula;
@@ -111,4 +113,36 @@ inpDrawAxes.onclick = drawChartWithValues;
 inpDrawLines.onclick = drawChartWithValues;
 inpChartColor.oninput = drawChartWithValues;
 
+// Section manipulation
+
+let currentSection = "";
+
+function handleWindowResize() {
+    const width = window.innerWidth;
+
+    if (width >= 800) {
+        currentSection = "";
+        const hiddenSections = document.querySelectorAll("section.hidden");
+        hiddenSections.forEach((section) => section.classList.remove("hidden"));
+        return;
+    }
+    if (currentSection !== "") return;
+
+    currentSection = "sectionModifires";
+    document.querySelector("#sectionHelp")?.classList.add("hidden");
+}
+window.onresize = handleWindowResize;
+
+sectionChangeBtns.forEach((btn) => {
+    btn.onclick = () => {
+        document.querySelector(`#${currentSection}`)?.classList.add("hidden");
+        currentSection = String(btn.dataset.direction);
+        document
+            .querySelector(`#${currentSection}`)
+            ?.classList.remove("hidden");
+    };
+});
+
+// Startup
 drawChartWithValues();
+handleWindowResize();

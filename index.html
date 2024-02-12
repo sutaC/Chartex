@@ -11,16 +11,29 @@
     <body>
         <header>
             <h1>Chartex</h1>
+            <small class="mobile">
+                Made by
+                <a
+                    href="https://github.com/sutaC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >sutaC</a
+                >
+            </small>
         </header>
 
         <main>
-            <section aria-labelledby="hModifires">
+            <section aria-labelledby="hModifires" id="sectionModifires">
                 <h2 id="hModifires">Modifires</h2>
-
-                <div class="fied">
-                    <label for="inpGraph">f(x) = </label>
-                    <input type="text" id="inpGraph" value="x" />
-                </div>
+                <button
+                    class="sectionChange mobile"
+                    data-direction="sectionHelp"
+                >
+                    <i
+                        class="icon"
+                        style="--_src: url('/images/icon-help.svg')"
+                    ></i>
+                </button>
 
                 <div class="field">
                     <input
@@ -88,11 +101,30 @@
 
             <div class="chart">
                 <canvas id="chart" width="500" height="500"></canvas>
-                <div id="errorMsg" class="hidden">Error in graph syntax</div>
+
+                <div class="formula">
+                    <div class="field">
+                        <label for="inpGraph">f(x) = </label>
+                        <input type="text" id="inpGraph" value="x" />
+                    </div>
+                    <small id="errorMsg" class="hidden">
+                        Error in graph syntax
+                    </small>
+                </div>
             </div>
 
-            <section aria-labelledby="hHelp">
+            <section aria-labelledby="hHelp" id="sectionHelp" class="hidden">
                 <h2 id="hHelp">Help</h2>
+
+                <button
+                    class="sectionChange mobile"
+                    data-direction="sectionModifires"
+                >
+                    <i
+                        class="icon"
+                        style="--_src: url('/images/icon-modifires.svg')"
+                    ></i>
+                </button>
 
                 <div class="detailsList">
                     <details>
@@ -172,5 +204,17 @@
                 </div>
             </section>
         </main>
+
+        <footer class="desktop">
+            <small>
+                Made by
+                <a
+                    href="https://github.com/sutaC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >sutaC</a
+                >
+            </small>
+        </footer>
     </body>
 </html>
