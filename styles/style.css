@@ -87,6 +87,10 @@ canvas {
     font-style: italic;
 }
 
+a {
+    color: var(--text);
+}
+
 section {
     position: absolute;
     isolation: isolate;
@@ -130,6 +134,8 @@ section > h2 {
     --_input-shadow: color-mix(in srgb, var(--accent) 100%, transparent 100%);
     box-shadow: inset 4px 4px 4px var(--_input-shadow),
         inset -4px -4px 4px var(--_input-shadow), 0 4px 4px rgba(0, 0, 0, 15%);
+
+    transition: all 200ms;
 }
 
 .field > input:hover {
@@ -194,6 +200,8 @@ button {
     --_button-shadow: color-mix(in srgb, var(--primary) 100%, transparent 100%);
     box-shadow: inset 4px 4px 4px var(--_button-shadow),
         inset -4px -4px 4px var(--_button-shadow), 0 4px 4px rgba(0, 0, 0, 15%);
+
+    transition: all 200ms;
 }
 
 button:hover {
@@ -250,10 +258,33 @@ summary {
     font-size: 1.125rem;
 }
 
+@keyframes slideInBottom {
+    0% {
+        translate: 0 100%;
+    }
+    50% {
+        translate: 0;
+    }
+    75% {
+        translate: 0 5%;
+    }
+    100% {
+        translate: 0;
+    }
+}
+section {
+    animation: slideInBottom 400ms ease-in;
+    z-index: 1;
+}
+
 /* Responsive */
 
 .hidden {
     visibility: hidden;
+}
+
+section.hidden {
+    display: none;
 }
 
 .mobile {
@@ -269,5 +300,9 @@ summary {
     }
     .desktop {
         display: block;
+    }
+
+    section {
+        animation: none;
     }
 }

@@ -23,9 +23,12 @@
         </header>
 
         <main>
-            <section aria-labelledby="hModifires" style="display: none">
+            <section aria-labelledby="hModifires" id="sectionModifires">
                 <h2 id="hModifires">Modifires</h2>
-                <button class="sectionChange mobile">
+                <button
+                    class="sectionChange mobile"
+                    data-direction="sectionHelp"
+                >
                     <i
                         class="icon"
                         style="--_src: url('/images/icon-help.svg')"
@@ -110,10 +113,13 @@
                 </div>
             </div>
 
-            <section aria-labelledby="hHelp">
+            <section aria-labelledby="hHelp" id="sectionHelp" class="hidden">
                 <h2 id="hHelp">Help</h2>
 
-                <button class="sectionChange mobile">
+                <button
+                    class="sectionChange mobile"
+                    data-direction="sectionModifires"
+                >
                     <i
                         class="icon"
                         style="--_src: url('/images/icon-modifires.svg')"
