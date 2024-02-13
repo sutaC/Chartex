@@ -300,6 +300,84 @@
 
         
             
+<h4 class="name" id="currentSection"><span class="type-signature"></span>currentSection<span class="type-signature"> :""|"sectionModifires"|"sectionHelp"</span></h4>
+
+
+
+
+<div class="description">
+    Represent currently visible section (only on mobile view, otherwise is empty)
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">""</span>
+|
+
+<span class="param-type">"sectionModifires"</span>
+|
+
+<span class="param-type">"sectionHelp"</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line122">line 122</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
 <h4 class="name" id="errorMsg"><span class="type-signature">(constant, nullable) </span>errorMsg<span class="type-signature"> :HTMLElement</span></h4>
 
 
@@ -911,10 +989,233 @@
 
 
         
+            
+<h4 class="name" id="sectionChangeBtns"><span class="type-signature">(constant) </span>sectionChangeBtns<span class="type-signature"> :NodeListOf.&lt;HTMLButtonElement></span></h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">NodeListOf.&lt;HTMLButtonElement></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
     
 
     
         <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="changeCurrentSection"><span class="type-signature"></span>changeCurrentSection<span class="signature">(element)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Changes currently visible section
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
 
         
             
@@ -974,7 +1275,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line82">line 82</a>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -1080,7 +1381,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="main.js.html">main.js</a>, <a href="main.js.html#line61">line 61</a>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -1129,6 +1430,112 @@
 
 
         
+            
+
+    
+
+    
+    <h4 class="name" id="handleWindowResize"><span class="type-signature"></span>handleWindowResize<span class="signature">()</span><span class="type-signature"> &rarr; {void}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Changes section display depending on window size
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="main.js.html">main.js</a>, <a href="main.js.html#line128">line 128</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     
@@ -1144,13 +1551,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-chart.html">chart</a></li></ul><h3>Classes</h3><ul><li><a href="module-chart.html">chart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#btnReset">btnReset</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#chart">chart</a></li><li><a href="global.html#drawChartWithValues">drawChartWithValues</a></li><li><a href="global.html#errorMsg">errorMsg</a></li><li><a href="global.html#getGraphOptions">getGraphOptions</a></li><li><a href="global.html#inpChartColor">inpChartColor</a></li><li><a href="global.html#inpDrawAxes">inpDrawAxes</a></li><li><a href="global.html#inpDrawLines">inpDrawLines</a></li><li><a href="global.html#inpGraph">inpGraph</a></li><li><a href="global.html#inpPointSize">inpPointSize</a></li><li><a href="global.html#inpStepAmmount">inpStepAmmount</a></li><li><a href="global.html#inpStepValue">inpStepValue</a></li><li><a href="global.html#inpYZoom">inpYZoom</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-chart.html">chart</a></li></ul><h3>Classes</h3><ul><li><a href="module-chart.html">chart</a></li></ul><h3>Global</h3><ul><li><a href="global.html#btnReset">btnReset</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#changeCurrentSection">changeCurrentSection</a></li><li><a href="global.html#chart">chart</a></li><li><a href="global.html#currentSection">currentSection</a></li><li><a href="global.html#drawChartWithValues">drawChartWithValues</a></li><li><a href="global.html#errorMsg">errorMsg</a></li><li><a href="global.html#getGraphOptions">getGraphOptions</a></li><li><a href="global.html#handleWindowResize">handleWindowResize</a></li><li><a href="global.html#inpChartColor">inpChartColor</a></li><li><a href="global.html#inpDrawAxes">inpDrawAxes</a></li><li><a href="global.html#inpDrawLines">inpDrawLines</a></li><li><a href="global.html#inpGraph">inpGraph</a></li><li><a href="global.html#inpPointSize">inpPointSize</a></li><li><a href="global.html#inpStepAmmount">inpStepAmmount</a></li><li><a href="global.html#inpStepValue">inpStepValue</a></li><li><a href="global.html#inpYZoom">inpYZoom</a></li><li><a href="global.html#sectionChangeBtns">sectionChangeBtns</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Feb 10 2024 01:57:26 GMT+0100 (czas środkowoeuropejski standardowy)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Tue Feb 13 2024 12:29:54 GMT+0100 (czas środkowoeuropejski standardowy)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -43,7 +43,7 @@ export const DefaultDrawChartOptions = {
     yZoom: 40,
     drawAxes: true,
     drawLines: true,
-    chartColor: "#0000FF",
+    chartColor: "#E04229",
 };
 
 /**
