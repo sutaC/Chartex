@@ -115,8 +115,16 @@ inpChartColor.oninput = drawChartWithValues;
 
 // Section manipulation
 
+/**
+ * Represent currently visible section (only on mobile view, otherwise is empty)
+ * @type {"" | "sectionModifires" | "sectionHelp"}
+ */
 let currentSection = "";
 
+/**
+ * Changes section display depending on window size
+ * @returns {void}
+ */
 function handleWindowResize() {
     const width = window.innerWidth;
 
@@ -133,14 +141,22 @@ function handleWindowResize() {
 }
 window.onresize = handleWindowResize;
 
+/**
+ * Changes currently visible section
+ * @param {HTMLElement} element
+ * @returns {void}
+ */
+function changeCurrentSection(element) {
+    const nextSection = String(element.dataset.direction);
+    if (nextSection !== "sectionModifires" && nextSection !== "sectionHelp")
+        throw new Error("Wrong section direction on button");
+
+    document.querySelector(`#${currentSection}`)?.classList.add("hidden");
+    currentSection = nextSection;
+    document.querySelector(`#${currentSection}`)?.classList.remove("hidden");
+}
 sectionChangeBtns.forEach((btn) => {
-    btn.onclick = () => {
-        document.querySelector(`#${currentSection}`)?.classList.add("hidden");
-        currentSection = String(btn.dataset.direction);
-        document
-            .querySelector(`#${currentSection}`)
-            ?.classList.remove("hidden");
-    };
+    btn.onclick = () => changeCurrentSection(btn);
 });
 
 // Startup
