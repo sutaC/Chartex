@@ -273,6 +273,7 @@ details code > i {
 
 summary {
     font-size: 1.125rem;
+    user-select: none;
     cursor: pointer;
 }
 
