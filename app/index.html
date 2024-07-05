@@ -16,6 +16,13 @@
         />
         <title>Chartex</title>
 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet"
+        />
+
         <link rel="stylesheet" href="./styles/style.css" />
         <script src="./scripts/main.js" type="module" defer></script>
     </head>
@@ -91,7 +98,7 @@
                         step="1"
                         id="inpYZoom"
                     />
-                    <label for="inpStepValue">Zoom on y axis</label>
+                    <label for="inpYZoom">Zoom on y axis</label>
                 </div>
 
                 <div class="field">
@@ -130,6 +137,7 @@
                 <button
                     class="sectionChange mobile"
                     data-direction="sectionModifires"
+                    aria-label="Change current section"
                 >
                     <i
                         class="icon"
