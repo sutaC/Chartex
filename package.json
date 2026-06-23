@@ -10,6 +10,6 @@
     "author": "sutaC",
     "license": "ISC",
     "devDependencies": {
-        "jsdoc": "^4.0.2"
+        "jsdoc": "^4.0.5"
     }
 }
